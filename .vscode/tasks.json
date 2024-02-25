@@ -32,7 +32,7 @@
 				"-fsanitize=undefined",
 				"-fno-sanitize-recover",
 				"-fstack-protector",
-				// "-O2",
+				"-O2",
 				"-o",
 				"${fileDirname}/out/main",
 			],
