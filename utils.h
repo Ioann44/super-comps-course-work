@@ -7,14 +7,6 @@ template <typename T>
 using Matrix = std::vector<std::vector<T>>;
 
 template <typename T>
-unsigned long long calcTime(void (*function)()) {
-	auto timeStart = std::chrono::high_resolution_clock::now();
-	function();
-	auto timeEnd = std::chrono::high_resolution_clock::now();
-	return (timeEnd - timeStart).count();
-}
-
-template <typename T>
 static void fillRand(Matrix<T> &matrix) {
 	static bool isFuncInitialized = false;
 	if (!isFuncInitialized) {
@@ -30,10 +22,13 @@ static void fillRand(Matrix<T> &matrix) {
 }
 
 template <typename T>
-unsigned long long doTest(size_t n, Matrix<T> (*function)(Matrix<T> &a, Matrix<T> &b)) {
+double doTest(size_t n, Matrix<T> (*function)(const Matrix<T> &a, const Matrix<T> &b)) {
 	Matrix<T> a(n, std::vector<T>(n)), b(n, std::vector<T>(n));
 	fillRand(a);
 	fillRand(b);
-	auto time = calcTime([]() { function(a, b); });
-	return time;
+
+	auto timeStart = std::chrono::high_resolution_clock::now();
+	function(a, b);
+	auto timeEnd = std::chrono::high_resolution_clock::now();
+	return (double)(timeEnd - timeStart).count() / 1e9;
 }

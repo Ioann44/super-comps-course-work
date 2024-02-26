@@ -1,3 +1,4 @@
 ## Course work for 8th semester on discipline "Supecomputers usage"
-It fine commented, live with it.<br>
-Will leave **readme** blank for a while.
+2nd task variant (only 1 task yet)
+<br><br>
+What do you expect to see here?
