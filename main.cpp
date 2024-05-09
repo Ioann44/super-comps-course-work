@@ -120,7 +120,7 @@ Matrix<T> blockMultiply(const Matrix<T>& a, const Matrix<T>& b) {
 		   "'A' cols num must be equal to 'B' rows num, and block size must be greater than 0");
 
 	size_t blockSize = (size_t)std::ceil(::sqrt((double)b.size()));
-	blockSize = 100;
+	// blockSize = 100;
 
 	size_t n = a.size();
 	size_t m = b[0].size();
@@ -166,20 +166,20 @@ Matrix<T> dotMatricesParallel(const Matrix<T>& a, const Matrix<T>& b) {
 // int main(int argc, char const *argv[]) {
 int main() {
 	size_t n = 1000;
-	using test_type = unsigned int;
+	using test_type = double;
 
-	cout << "Trivial" << endl;
+	cout << "Trivial: ";
 	cout << doTest<test_type>(n, dotMatrices) << endl;
 
-	cout << "Transposed" << endl;
+	cout << "Transposed: ";
 	cout << doTest<test_type>(n, dotMatricesWithTranspose) << endl;
 
-	cout << "Strassen" << endl;
+	cout << "Strassen: ";
 	cout << doTest<test_type>(n, strassen) << endl;
 
-	cout << "Blocks" << endl;
+	cout << "Blocks: ";
 	cout << doTest<test_type>(n, blockMultiply) << endl;
 
-	cout << "Parallel" << endl;
+	cout << "Parallel: ";
 	cout << doTest<test_type>(n, dotMatricesParallel) << endl;
 }
